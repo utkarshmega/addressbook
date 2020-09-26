@@ -20,7 +20,6 @@ public class addressbookcontent {
 		this.zip = zip;
 		this.phNo = mobNo;
 		this.email = mail;
-	}
-	
+	}	
 
 }
