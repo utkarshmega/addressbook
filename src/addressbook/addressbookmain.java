@@ -47,7 +47,7 @@ public class addressbookmain {
 		
 		case 2:
 			System.out.println("Enter first name to edit");
-			String first = sc.nextLine();
+			String first = sc.next();
 			sc.nextLine();
 			int pos=-1;
 			for(int i=0;i<list.size();i++)
