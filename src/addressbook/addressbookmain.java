@@ -17,7 +17,7 @@ public class addressbookmain {
 				"9044961252", "utkarsh@gmail.com"));
 		System.out.println(list.size());
 		System.out.println(list.get(0).getFirstName());
-		System.out.println("Enter 1 to add or 2 to edit");
+		System.out.println("Enter 1 to add or 2 to delete");
 		int choice = sc.nextInt();
 		switch(choice) {
 		
@@ -47,43 +47,21 @@ public class addressbookmain {
 		
 		case 2:
 			System.out.println("Enter first name to edit");
-			String first = sc.nextLine();
+			String first = sc.next();
 			sc.nextLine();
 			int pos=-1;
 			for(int i=0;i<list.size();i++)
 			{
-				if(list.get(i).getFirstName().equals(first))
+				if((list.get(i).getFirstName()).equals(first)) {
 					pos=i;
+					break;
+				}
 			}
-			System.out.println("Choose the option to edit");
-		      System.out.println("1.Edit Last name");
-		      System.out.println("2.Edit Address");
-		      System.out.println("3.Edit City");
-		      System.out.println("4.Edit Zip");
-		      System.out.println("5.Edit Phone Number");
-		      System.out.println("6.Edit Email");
-		      System.out.println("7.Exit");
-		      
-		      int option = sc.nextInt();
-		      if(option == 1)
-		    	  list.get(pos).setLastName(sc.next());
-		      else if(option == 2) {
-		    	  list.get(pos).setAddress(sc.nextLine());
-		    	  sc.nextLine();
-		      }
-		      else if(option == 3)
-		    	  list.get(pos).setCity(sc.next());
-		      else if(option == 4)
-		    	  list.get(pos).setZip(sc.nextInt());
-		      else if(option == 5)
-		    	  list.get(pos).setPhoneNumber(sc.next());
-		      else if(option == 6)
-		    	  list.get(pos).setEmail(sc.next());
-		      else
-		    	  break;
-		      System.out.println("Contact updated succesfully");
-		      break;
-		    default: 
+			
+			list.remove(pos);
+			System.out.println("Contact removed succesfully");
+			break;
+			
 		    	  
 		}
 	}
