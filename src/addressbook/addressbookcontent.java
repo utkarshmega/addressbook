@@ -21,7 +21,7 @@ public class addressbookcontent {
 		this.phNo = mobNo;
 		this.email = mail;
 	}
-	public String getFirstName()
+	public String getFirstName() 
 	{
 		return firstName;
 	}
