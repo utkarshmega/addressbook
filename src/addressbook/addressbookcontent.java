@@ -25,7 +25,7 @@ public class addressbookcontent {
 	{
 		return firstName;
 	}
-	public String getLasttName()
+	public String getLastName()
 	{
 		return lastName;
 	}
