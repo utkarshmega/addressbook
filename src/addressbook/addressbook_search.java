@@ -1,13 +1,12 @@
 package addressbook;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class addressbook_search {
+
+	public static Map<String, ArrayList<addressbookcontent>> cityList = new HashMap<>();
+	public static Map<String, ArrayList<addressbookcontent>> stateList = new HashMap<>();
 
 	public int equals_check(ArrayList<addressbookcontent> tmp, addressbookcontent a1) {
 		int count = (int) tmp.stream().filter(i -> i.equals(a1)).count();
@@ -60,6 +59,27 @@ public class addressbook_search {
 				for (int j = 0; j < c.size(); j++)
 					System.out.println("AddressBook " + ab.getKey() + " Name " + c.get(j).getFirstName() + " "
 							+ c.get(j).getLastName());
+		}
+	}
+
+	/**
+	 * to view name of the person by city
+	 */
+	public void viewByCity(String city) {
+		List<addressbookcontent> c = cityList.get(city);
+		for (int j = 0; j < c.size(); j++) {
+			System.out.println(c.get(j).getCity());
+			System.out.println(" Name " + c.get(j).getFirstName() + " " + c.get(j).getLastName());
+		}
+	}
+
+	/**
+	 * to view name of the person by state
+	 */
+	public void viewByState(String state) {
+		List<addressbookcontent> c = stateList.get(state);
+		for (int j = 0; j < c.size(); j++) {
+			System.out.println(" Name " + c.get(j).getFirstName() + " " + c.get(j).getLastName());
 		}
 	}
 
