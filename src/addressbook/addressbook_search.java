@@ -11,7 +11,8 @@ public class addressbook_search{
 	
 	public int equals_check(ArrayList<addressbookcontent> tmp, addressbookcontent a1)
 	{
-		int count = (int) list.stream().filter(i->i.equals(a1)).count();
+		int count = (int) tmp.stream().filter(i->i.equals(a1)).count();
+		System.out.println(count);
 		return count;
 		
 	}
