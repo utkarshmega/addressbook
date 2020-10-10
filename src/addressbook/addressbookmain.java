@@ -15,7 +15,9 @@ public class addressbookmain {
 		HashMap<String, ArrayList<addressbookcontent>> hm = new HashMap<>();
 		System.out.println("Enter 1 to add\n2 to edit \n3 to deleteand \n"
 				+ "4 to add new address book \n5 to display \n6 to search by name"
-				+ "\n7 to search by state \n8 to view by city" + "\n9 to view by state\n0 to exit");
+				+ "\n7 to search by state \n8 to view by city" + "\n9 to view by state\n"
+						+ "\n10 Print count of contacts in particular city\n"
+						+ "11 Print count of contacts in particular city\n 0 to exit");
 		int choice = sc.nextInt();
 
 		while (choice != 0) {
@@ -180,6 +182,18 @@ public class addressbookmain {
 			case 9:
 				System.out.println("Enter the state to view contacts");
 				obj.viewByState(sc.next());
+				break;
+
+			case 10:
+				System.out.println("Enter the city to view total contacts");
+				int city_count = addressbook_search.cityList.get(sc.next()).size();
+				System.out.println(city_count);
+				break;
+
+			case 11:
+				System.out.println("Enter the state to view total contacts");
+				int state_count = addressbook_search.stateList.get(sc.next()).size();
+				System.out.println(state_count);
 				break;
 
 			default:
