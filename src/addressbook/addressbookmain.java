@@ -4,16 +4,19 @@ import java.util.*;
 
 public class addressbookmain {
 
+	static HashMap<String, ArrayList<addressbookcontent>> hm = new HashMap<>();
+
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-
+		addressbook_search obj = new addressbook_search();
 		System.out.println("Welcome to Address Book\r\n" + "Program in\r\n" + "AddressBookMain class \r\n");
 
 		HashMap<String, ArrayList<addressbookcontent>> hm = new HashMap<>();
 		System.out.println("Enter 1 to add\n2 to edit \n3 to deleteand \n"
-				+ "4 to add new address book \n5 to display \n0 to exit");
-		int choice = sc.nextInt();		
+				+ "4 to add new address book \n5 to display \n6 to search by name"
+				+ "\n7 to search by state \n0 to exit");
+		int choice = sc.nextInt();
 
 		while (choice != 0) {
 			switch (choice) {
@@ -46,10 +49,9 @@ public class addressbookmain {
 				System.out.println("Enter E-Mail");
 				String mail = sc.next();
 
-				addressbook_search obj = new addressbook_search();
 				addressbookcontent a1 = new addressbookcontent(fname, lname, add, city, zipcode, ph, mail);
-				
-				//to find the duplicate contacts in the address books
+
+				// to find the duplicate contacts in the address books
 				int count = obj.equals_check(listtmp, a1);
 				if (count == 0) {
 					listtmp.add(a1);
@@ -158,6 +160,16 @@ public class addressbookmain {
 					System.out.println(listtmp3.get(i).getPhoneNumber());
 					System.out.println();
 				}
+				break;
+
+			case 6:
+				System.out.println("Enter the city to search contacts");
+				obj.searchByCity(sc.next());
+				break;
+
+			case 7:
+				System.out.println("Enter the state to search contacts");
+				obj.searchByState(sc.next());
 				break;
 
 			default:
