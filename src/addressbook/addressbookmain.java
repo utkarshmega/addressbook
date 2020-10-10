@@ -17,7 +17,8 @@ public class addressbookmain {
 				+ "4 to add new address book \n5 to display \n6 to search by name"
 				+ "\n7 to search by state \n8 to view by city" + "\n9 to view by state\n"
 						+ "\n10 Print count of contacts in particular city\n"
-						+ "11 Print count of contacts in particular city\n 0 to exit");
+						+ "11 Print count of contacts in particular city\n"
+						+ "\n12 To sort using first name \n0 to exit");
 		int choice = sc.nextInt();
 
 		while (choice != 0) {
@@ -195,6 +196,12 @@ public class addressbookmain {
 				int state_count = addressbook_search.stateList.get(sc.next()).size();
 				System.out.println(state_count);
 				break;
+				
+			case 12:
+				   System.out.println("Enter the address book to view its sorted contacts");
+				   String AddressBookName = sc.next();
+				   obj.viewSortedContactsInAddressBook(AddressBookName);
+				   break;
 
 			default:
 			}
