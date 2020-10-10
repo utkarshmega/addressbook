@@ -95,5 +95,44 @@ public class addressbook_search {
 		addressbookmain.hm.get(AddressBookName).tmp.stream().sorted((n1,n2) -> n1.getFirstName().compareTo(n2.getFirstName())).
 				                               map(i->i.toString()).forEach(y-> System.out.println(y));
 	}
+	
+	/**
+	 * to sort the address book by city
+	 */
+	public void viewSortedContactsByCityInAddressBook(String AddressBookName) {
+		if(addressbookmain.hm.get(AddressBookName) == null)
+		{
+			System.out.println("No addressBook with this name, enter correct address book");
+			return;
+		}
+		addressbookmain.hm.get(AddressBookName).tmp.stream().sorted(Comparator.comparing(addressbookcontent :: getCity)).
+				                               map(i->i.toString()).forEach(y-> System.out.println(y));
+	}
+
+	/**
+	 * to sort the address book by state 
+	 */
+	public void viewSortedContactsByStateInAddressBook(String AddressBookName) {
+		if(addressbookmain.hm.get(AddressBookName) == null)
+		{
+			System.out.println("No addressBook with this name, enter correct address book");
+			return;
+		}
+		addressbookmain.hm.get(AddressBookName).tmp.stream().sorted(Comparator.comparing(addressbookcontent :: getState)).
+				                               map(i->i.toString()).forEach(y-> System.out.println(y));
+	}
+	
+	/**
+	 * to sort the address book by zip code
+	 */
+	public void viewSortedContactsByZipInAddressBook(String AddressBookName) {
+		if(addressbookmain.hm.get(AddressBookName) == null)
+		{
+			System.out.println("No addressBook with this name, enter correct address book");
+			return;
+		}
+		addressbookmain.hm.get(AddressBookName).tmp.stream().sorted(Comparator.comparing(addressbookcontent :: getZip)).
+				                               map(i->i.toString()).forEach(y-> System.out.println(y));
+	}
 
 }

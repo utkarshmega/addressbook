@@ -13,12 +13,12 @@ public class addressbookmain {
 		System.out.println("Welcome to Address Book\r\n" + "Program in\r\n" + "AddressBookMain class \r\n");
 
 		HashMap<String, ArrayList<addressbookcontent>> hm = new HashMap<>();
-		System.out.println("Enter 1 to add\n2 to edit \n3 to deleteand \n"
+		System.out.println("Enter \n1 to add\n2 to edit \n3 to delete \n"
 				+ "4 to add new address book \n5 to display \n6 to search by name"
-				+ "\n7 to search by state \n8 to view by city" + "\n9 to view by state\n"
-						+ "\n10 Print count of contacts in particular city\n"
-						+ "11 Print count of contacts in particular city\n"
-						+ "\n12 To sort using first name \n0 to exit");
+				+ "\n7 to search by state \n8 to view by city" + "\n9 to view by state"
+				+ "\n10 Print count of contacts in particular city\n"
+				+ "11 Print count of contacts in particular state" + "\n12 To sort using first name"
+				+ "\n13 To sort using city \n14 To sort using state" + "\n15 To sort using zipcode \n0 to exit");
 		int choice = sc.nextInt();
 
 		while (choice != 0) {
@@ -44,6 +44,8 @@ public class addressbookmain {
 				sc.nextLine();
 				System.out.println("Enter City");
 				String city = sc.next();
+				System.out.println("Enter State");
+				String state = sc.next();
 				sc.nextLine();
 				System.out.println("Enter zip code");
 				int zipcode = sc.nextInt();
@@ -52,7 +54,7 @@ public class addressbookmain {
 				System.out.println("Enter E-Mail");
 				String mail = sc.next();
 
-				addressbookcontent a1 = new addressbookcontent(fname, lname, add, city, zipcode, ph, mail);
+				addressbookcontent a1 = new addressbookcontent(fname, lname, add, city, state, zipcode, ph, mail);
 
 				// to find the duplicate contacts in the address books
 				int count = obj.equals_check(listtmp, a1);
@@ -196,12 +198,27 @@ public class addressbookmain {
 				int state_count = addressbook_search.stateList.get(sc.next()).size();
 				System.out.println(state_count);
 				break;
-				
+
 			case 12:
-				   System.out.println("Enter the address book to view its sorted contacts");
-				   String AddressBookName = sc.next();
-				   obj.viewSortedContactsInAddressBook(AddressBookName);
-				   break;
+				System.out.println("Enter the address book to view its sorted contacts");
+				String AddressBookName = sc.next();
+				obj.viewSortedContactsInAddressBook(AddressBookName);
+				break;
+
+			case 13:
+				System.out.println("Enter the address book to view its sorted contacts by City");
+				obj.viewSortedContactsByCityInAddressBook(sc.next());
+				break;
+
+			case 14:
+				System.out.println("Enter the address book to view its sorted contacts by State");
+				obj.viewSortedContactsByStateInAddressBook(sc.next());
+				break;
+
+			case 15:
+				System.out.println("Enter the address book to view its sorted contacts by Zip");
+				obj.viewSortedContactsByZipInAddressBook(sc.next());
+				break;
 
 			default:
 			}
