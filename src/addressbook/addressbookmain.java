@@ -1,6 +1,7 @@
 package addressbook;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class addressbookmain {
 
@@ -9,18 +10,21 @@ public class addressbookmain {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		addressbook_search obj = new addressbook_search();
+
 		System.out.println("Welcome to Address Book\r\n" + "Program in\r\n" + "AddressBookMain class \r\n");
 
 		HashMap<String, ArrayList<addressbookcontent>> hm = new HashMap<>();
-		System.out.println("Enter 1 to add\n2 to edit \n3 to deleteand \n"
-				+ "4 to add new address book \n5 to display \n6 to search by name"
-				+ "\n7 to search by state \n8 to view by city" + "\n9 to view by state\n"
-						+ "\n10 Print count of contacts in particular city\n"
-						+ "11 Print count of contacts in particular city\n 0 to exit");
-		int choice = sc.nextInt();
+		Map<String, ArrayList<addressbookcontent>> cityList = new HashMap<>();
+		Map<String, ArrayList<addressbookcontent>> stateList = new HashMap<>();
 
+		int choice = 1;
 		while (choice != 0) {
+			System.out.println("Enter 1 to add\n2 to edit \n3 to deleteand \n"
+					+ "4 to add new address book \n5 to display \n6 to search by name"
+					+ "\n7 to search by state \n8 to view by city" + "\n9 to view by state"
+					+ "\n10 Print count of contacts in particular city\n"
+					+ "11 Print count of contacts in particular state\n0 to exit");
+			choice = sc.nextInt();
 			switch (choice) {
 
 			case 1:
@@ -43,6 +47,8 @@ public class addressbookmain {
 				sc.nextLine();
 				System.out.println("Enter City");
 				String city = sc.next();
+				System.out.println("Enter state");
+				String state = sc.next();
 				sc.nextLine();
 				System.out.println("Enter zip code");
 				int zipcode = sc.nextInt();
@@ -51,10 +57,10 @@ public class addressbookmain {
 				System.out.println("Enter E-Mail");
 				String mail = sc.next();
 
-				addressbookcontent a1 = new addressbookcontent(fname, lname, add, city, zipcode, ph, mail);
+				addressbookcontent a1 = new addressbookcontent(fname, lname, add, city, state, zipcode, ph, mail);
 
 				// to find the duplicate contacts in the address books
-				int count = obj.equals_check(listtmp, a1);
+				int count = (int) listtmp.stream().filter(i -> i.equals(a1)).count();
 				if (count == 0) {
 					listtmp.add(a1);
 					hm.put(name, listtmp);
@@ -166,41 +172,82 @@ public class addressbookmain {
 
 			case 6:
 				System.out.println("Enter the city to search contacts");
-				obj.searchByCity(sc.next());
+				String city1 = sc.next();
+				if (hm.isEmpty()) {
+					System.out.println("No AddressBook Exists, add new AddressBook First");
+					System.exit(0);
+				}
+				for (Map.Entry<String, ArrayList<addressbookcontent>> ab : hm.entrySet()) {
+
+					List<addressbookcontent> c = ab.getValue().stream().filter(i -> i.getCity().equals(city1))
+							.collect(Collectors.toList());
+					if (c.size() == 0)
+						System.out.println("No entry with city name: " + city1 + " in addressbook " + ab.getKey());
+
+					else
+						for (int j = 0; j < c.size(); j++) {
+							System.out.println("AddressBook " + ab.getKey() + " Name " + c.get(j).getFirstName() + " "
+									+ c.get(j).getLastName());
+						}
+				}
 				break;
 
 			case 7:
 				System.out.println("Enter the state to search contacts");
-				obj.searchByState(sc.next());
+				String state1 = sc.next();
+				if (hm.isEmpty()) {
+					System.out.println("No AddressBook Exists, add new AddressBook First");
+					System.exit(0);
+				}
+				for (Map.Entry<String, ArrayList<addressbookcontent>> ab : hm.entrySet()) {
+
+					List<addressbookcontent> c = ab.getValue().stream().filter(i -> i.getState().equals(state1))
+							.collect(Collectors.toList());
+
+					if (c.size() == 0)
+						System.out.println("No entry with state name: " + state1 + " in addressbook " + ab.getKey());
+
+					else
+						for (int j = 0; j < c.size(); j++)
+							System.out.println("AddressBook " + ab.getKey() + " Name " + c.get(j).getFirstName() + " "
+									+ c.get(j).getLastName());
+				}
 				break;
 
 			case 8:
 				System.out.println("Enter the city to view contacts");
-				obj.viewByCity(sc.next());
+				String city11 = sc.next();
+				List<addressbookcontent> c = cityList.get(city11);
+				for (int j = 0; j < c.size(); j++) {
+					System.out.println(c.get(j).getCity());
+					System.out.println(" Name " + c.get(j).getFirstName() + " " + c.get(j).getLastName());
+				}
 				break;
 
 			case 9:
 				System.out.println("Enter the state to view contacts");
-				obj.viewByState(sc.next());
+				String state11 = sc.next();
+				List<addressbookcontent> c1 = stateList.get(state11);
+				for (int j = 0; j < c1.size(); j++) {
+					System.out.println(" Name " + c1.get(j).getFirstName() + " " + c1.get(j).getLastName());
+				}
 				break;
 
 			case 10:
 				System.out.println("Enter the city to view total contacts");
-				int city_count = addressbook_search.cityList.get(sc.next()).size();
+				int city_count = cityList.get(sc.next()).size();
 				System.out.println(city_count);
 				break;
 
 			case 11:
 				System.out.println("Enter the state to view total contacts");
-				int state_count = addressbook_search.stateList.get(sc.next()).size();
+				int state_count = stateList.get(sc.next()).size();
 				System.out.println(state_count);
 				break;
 
 			default:
 			}
-			System.out.println(
-					"Enter 1 to add\n2 to edit \n3 to delete \n4 to add new address book \n5 to display \n0 to exit");
-			choice = sc.nextInt();
+
 		}
 		sc.close();
 	}
