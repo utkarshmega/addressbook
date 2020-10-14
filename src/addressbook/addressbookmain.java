@@ -19,7 +19,7 @@ public class addressbookmain {
 
 			System.out.println("Enter 1 to add\n2 to edit \n3 to deleteand \n"
 					+ "4 to add new address book \n5 to display \n6 to search by city"
-					+ "\n7 to search by state \n0 to exit");
+					+ "\n7 to search by state \n8 To view by city \n9 To view by State \n0 to exit");
 			choice = sc.nextInt();
 			switch (choice) {
 
