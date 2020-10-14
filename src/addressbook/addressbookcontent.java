@@ -9,8 +9,9 @@ public class addressbookcontent {
 	int zip;
 	String phNo;
 	String email;
+	String state;
 	
-	public addressbookcontent(String fname, String lname, String add, String city,
+	public addressbookcontent(String fname, String lname, String add, String city, String state,
 			int zip, String mobNo, String mail)
 	{
 		this.firstName = fname;
@@ -20,6 +21,7 @@ public class addressbookcontent {
 		this.zip = zip;
 		this.phNo = mobNo;
 		this.email = mail;
+		this.state = state;
 	}
 	public String getFirstName() 
 	{
@@ -49,6 +51,9 @@ public class addressbookcontent {
 	{
 		return email;
 	}
+	public String getState() {
+		return state;
+	}
 	public void setFirstName(String fname)
 	{
 		this.firstName = fname;
@@ -76,5 +81,9 @@ public class addressbookcontent {
 	public void setEmail(String mail)
 	{
 		this.email = mail;
+	}
+	public void setState(String state)
+	{
+		this.state = state;
 	}
 }
