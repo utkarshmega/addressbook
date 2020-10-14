@@ -46,11 +46,10 @@ public class addressbookmain {
 				System.out.println("Enter E-Mail");
 				String mail = sc.next();
 
-				addressbook_search obj = new addressbook_search();
 				addressbookcontent a1 = new addressbookcontent(fname, lname, add, city, zipcode, ph, mail);
 				
 				//to find the duplicate contacts in the address books
-				int count = obj.equals_check(listtmp, a1);
+				int count = (int) listtmp.stream().filter(i->i.equals(a1)).count();
 				if (count == 0) {
 					listtmp.add(a1);
 					hm.put(name, listtmp);
