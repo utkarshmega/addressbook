@@ -301,7 +301,7 @@ public class addressbookmain {
 				String path = "F:\\Capgemini workspace";
 				String directory = "Address Book Directory";
 
-				Path directoryLoc = Paths.get(path + "\\Address Book File System\\" + directory);
+				Path directoryLoc = Paths.get(path + "\\addressbook\\" + directory);
 				if (Files.notExists(directoryLoc)) {
 					Files.createDirectory(directoryLoc);
 				}
