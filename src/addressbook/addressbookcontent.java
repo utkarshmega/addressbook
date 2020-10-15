@@ -1,7 +1,7 @@
 package addressbook;
 
 public class addressbookcontent {
-	
+
 	String firstName;
 	String lastName;
 	String address;
@@ -10,10 +10,9 @@ public class addressbookcontent {
 	String phNo;
 	String email;
 	String state;
-	
-	public addressbookcontent(String fname, String lname, String add, String city, String state,
-			int zip, String mobNo, String mail)
-	{
+
+	public addressbookcontent(String fname, String lname, String add, String city, String state, int zip, String mobNo,
+			String mail) {
 		this.firstName = fname;
 		this.lastName = lname;
 		this.address = add;
@@ -23,67 +22,73 @@ public class addressbookcontent {
 		this.email = mail;
 		this.state = state;
 	}
-	public String getFirstName() 
-	{
+
+	public String getFirstName() {
 		return firstName;
 	}
-	public String getLastName()
-	{
+
+	public String getLastName() {
 		return lastName;
 	}
-	public String getAddress()
-	{
+
+	public String getAddress() {
 		return address;
 	}
-	public String getCity()
-	{
+
+	public String getCity() {
 		return city;
 	}
-	public int getZip()
-	{
+
+	public int getZip() {
 		return zip;
 	}
-	public String getPhoneNumber()
-	{
+
+	public String getPhoneNumber() {
 		return phNo;
 	}
-	public String getEmail()
-	{
+
+	public String getEmail() {
 		return email;
 	}
+
 	public String getState() {
 		return state;
 	}
-	public void setFirstName(String fname)
-	{
+
+	public void setFirstName(String fname) {
 		this.firstName = fname;
 	}
-	public void setLastName(String lname)
-	{
+
+	public void setLastName(String lname) {
 		this.lastName = lname;
 	}
-	public void setAddress(String addr)
-	{
+
+	public void setAddress(String addr) {
 		this.address = addr;
 	}
-	public void setCity(String city)
-	{
+
+	public void setCity(String city) {
 		this.city = city;
 	}
-	public void setZip(int zipc)
-	{
+
+	public void setZip(int zipc) {
 		this.zip = zipc;
 	}
-	public void setPhoneNumber(String phn)
-	{
+
+	public void setPhoneNumber(String phn) {
 		this.phNo = phn;
 	}
-	public void setEmail(String mail)
-	{
+
+	public void setEmail(String mail) {
 		this.email = mail;
 	}
-	public void setState(String state)
-	{
+
+	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String toString() {
+		return "First name : " + firstName + "\nLast name : " + lastName + "\nAddress : " + address + "\nCity : " + city
+				+ "\nState : " + state + "\nZip : " + zip + "\nPhone num : " + phNo + "\nEmail : " + email+"\n";
 	}
 }

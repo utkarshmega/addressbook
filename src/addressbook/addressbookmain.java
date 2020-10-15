@@ -1,13 +1,18 @@
 package addressbook;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 public class addressbookmain {
 
 	static HashMap<String, ArrayList<addressbookcontent>> hm = new HashMap<>();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to Address Book\r\n" + "Program in\r\n" + "AddressBookMain class \r\n");
@@ -15,7 +20,7 @@ public class addressbookmain {
 		HashMap<String, ArrayList<addressbookcontent>> hm = new HashMap<>();
 		Map<String, ArrayList<addressbookcontent>> cityList = new HashMap<>();
 		Map<String, ArrayList<addressbookcontent>> stateList = new HashMap<>();
-		
+
 		int choice = 1;
 
 		while (choice != 0) {
@@ -25,7 +30,8 @@ public class addressbookmain {
 					+ "\n7 to search by state \n8 to view by city" + "\n9 to view by state"
 					+ "\n10 Print count of contacts in particular city\n"
 					+ "11 Print count of contacts in particular state" + "\n12 To sort using first name"
-					+ "\n13 To sort using city \n14 To sort using state" + "\n15 To sort using zipcode \n0 to exit");
+					+ "\n13 To sort using city \n14 To sort using state" + "\n15 To sort using zipcode "
+					+ "\n16 to write to file\n0 to exit");
 			choice = sc.nextInt();
 			switch (choice) {
 
@@ -291,11 +297,34 @@ public class addressbookmain {
 						.map(i -> i.toString()).forEach(y -> System.out.println(y));
 				break;
 
+			case 16:
+				String path = "F:\\Capgemini workspace";
+				String directory = "Address Book Directory";
+
+				Path directoryLoc = Paths.get(path + "\\Address Book File System\\" + directory);
+				if (Files.notExists(directoryLoc)) {
+					Files.createDirectory(directoryLoc);
+				}
+
+				Path fileLoc = Paths.get(directoryLoc + "\\Name" + ".txt");
+				if (Files.notExists(fileLoc))
+					Files.createFile(fileLoc);
+
+				StringBuffer bufferList = new StringBuffer();
+				hm.values().forEach(details -> {
+					String data = details.toString().concat("\n");
+					bufferList.append(data);
+				});
+				try {
+					Files.write(fileLoc, bufferList.toString().getBytes());
+					System.out.println("Contact added to the file successfully");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+
 			default:
 			}
-			System.out.println(
-					"Enter 1 to add\n2 to edit \n3 to delete \n4 to add new address book \n5 to display \n0 to exit");
-			choice = sc.nextInt();
 		}
 		sc.close();
 	}
