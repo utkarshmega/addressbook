@@ -20,6 +20,9 @@ public class addressbookmain {
 		HashMap<String, ArrayList<addressbookcontent>> hm = new HashMap<>();
 		Map<String, ArrayList<addressbookcontent>> cityList = new HashMap<>();
 		Map<String, ArrayList<addressbookcontent>> stateList = new HashMap<>();
+		
+		String path = "F:\\Capgemini workspace";
+		String directory = "Address Book Directory";
 
 		int choice = 1;
 
@@ -31,7 +34,7 @@ public class addressbookmain {
 					+ "\n10 Print count of contacts in particular city\n"
 					+ "11 Print count of contacts in particular state" + "\n12 To sort using first name"
 					+ "\n13 To sort using city \n14 To sort using state" + "\n15 To sort using zipcode "
-					+ "\n16 to write to file\n0 to exit");
+					+ "\n16 to write to file \n17 To read from file\n0 to exit");
 			choice = sc.nextInt();
 			switch (choice) {
 
@@ -298,9 +301,6 @@ public class addressbookmain {
 				break;
 
 			case 16:
-				String path = "F:\\Capgemini workspace";
-				String directory = "Address Book Directory";
-
 				Path directoryLoc = Paths.get(path + "\\addressbook\\" + directory);
 				if (Files.notExists(directoryLoc)) {
 					Files.createDirectory(directoryLoc);
@@ -320,6 +320,18 @@ public class addressbookmain {
 					System.out.println("Contact added to the file successfully");
 				} catch (IOException e) {
 					e.printStackTrace();
+				}
+				break;
+				
+			case 17:
+				Path directoryLoc1 = Paths.get(path + "\\addressbook\\" + directory);
+				Path fileLoc1 = Paths.get(directoryLoc1 + "\\Name" + ".txt");
+				try {
+					System.out.println("The contacts in the all the address books are");
+					Files.lines(fileLoc1).map(line -> line.trim()).forEach(line -> System.out.println(line));			
+				}
+				catch(Exception e) {
+					e.getMessage();
 				}
 				break;
 
